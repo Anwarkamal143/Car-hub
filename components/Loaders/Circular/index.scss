@@ -1,0 +1,92 @@
+.request_loader {
+  width: 100%;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-animation: animateScale 2s ease-in-out infinite alternate;
+  animation: animateScale 2s ease-in-out infinite alternate;
+
+  .pl {
+    /* display: block; */
+    /* width: 1em;
+      height: 1em; */
+  }
+  .pl__ring,
+  .pl__ball {
+    animation: ring 2s ease-out infinite;
+  }
+  .pl__ball {
+    animation-name: ball;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+  }
+
+  /* Animation */
+  @keyframes ring {
+    from {
+      stroke-dasharray: 0 257 0 0 1 0 0 258;
+    }
+    25% {
+      stroke-dasharray: 0 0 0 0 257 0 258 0;
+    }
+    50%,
+    to {
+      stroke-dasharray: 0 0 0 0 0 515 0 0;
+    }
+  }
+
+  @keyframes ball {
+    from,
+    50% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: 1;
+    }
+    64% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: -109;
+    }
+    78% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: -145;
+    }
+    92% {
+      animation-timing-function: ease-in;
+      stroke-dashoffset: -157;
+    }
+    57%,
+    71%,
+    85%,
+    99%,
+    to {
+      animation-timing-function: ease-out;
+      stroke-dashoffset: -163;
+    }
+  }
+
+  &.loading {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.loader1 {
+  span {
+    display: block;
+    border: 2px solid;
+    border-radius: 50%;
+    border-color: transparent var(--primary) var(--primary);
+    animation: cssload-spin 690ms infinite linear;
+    @keyframes cssload-spin {
+      100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
