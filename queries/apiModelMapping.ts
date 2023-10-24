@@ -3,7 +3,7 @@ import CarModel from "@/models/CarModel";
 
 export const ApiModels = {
   Cars: "cars",
-  Car: "car",
+  Car: "car-images",
 } as const;
 export const ThreePAppSubModels = {
   ThreePAppConnection: "3p-app-connections",
