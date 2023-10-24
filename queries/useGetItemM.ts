@@ -53,7 +53,7 @@ export default function useGetItemM<T extends keyof typeof ApiModelMapping>({
         ...(reqOptions.requestOptions || {}),
         requestId: reqOptions.requestOptions?.requestId || newRequstId,
       };
-      return model.get(slug, reqOptions);
+      return await model.get(slug, reqOptions);
     },
     options as any
   );

@@ -52,7 +52,7 @@ export default function useListItemsM<T extends keyof typeof ApiModelMapping>({
         ...(reqOptions.requestOptions || {}),
         requestId: reqOptions.requestOptions?.requestId || newRequstId,
       };
-      return model.list(reqOptions);
+      return await model.list(reqOptions);
     },
     options as any
   );
