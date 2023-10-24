@@ -7,14 +7,15 @@ import { Button } from "./Button";
 type Props = {
   pageNumber?: number;
   isNext?: boolean;
+  searchparams?: any;
 };
 
 const ShowMore = (props: Props) => {
-  const { isNext, pageNumber = 1 } = props;
+  const { isNext, pageNumber = 1, searchparams } = props;
+  console.log({ searchparams });
   const router = useRouter();
   const handleNavigation = () => {
     const newLimit = (pageNumber + 1) * 10;
-    console.log({ pageNumber });
     const newPathName = updateSearchParams("limit", `${newLimit}`);
     router.push(newPathName, {
       scroll: false,

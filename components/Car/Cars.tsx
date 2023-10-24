@@ -22,6 +22,7 @@ async function Cars(props: Props) {
       </div>
       <Suspense fallback={<p>Loading show More button...</p>}>
         <ShowMore
+          searchparams={searchParams}
           pageNumber={parseInt(`${searchParams.limit || 10}`) / 10}
           isNext={(searchParams.limit || 10) > data?.length}
         />
