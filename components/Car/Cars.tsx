@@ -7,15 +7,7 @@ type Props = {
 };
 
 async function Cars(props: Props) {
-  const {
-    searchParams = {
-      year: 2022,
-      limit: 10,
-      fuel_type: "",
-      model: "",
-      make: "bmw",
-    },
-  } = props;
+  const { searchParams } = props;
   const [data = [], error] = await getServerCars({
     ...searchParams,
   } as any);
@@ -28,7 +20,7 @@ async function Cars(props: Props) {
         ))}
       </div>
       <ShowMore
-        pageNumber={(parseInt(`${searchParams.limit || 0}`) || 10) / 10}
+        pageNumber={parseInt(`${searchParams.limit || 10}`) / 10}
         isNext={(searchParams.limit || 10) > data?.length}
       />
     </section>

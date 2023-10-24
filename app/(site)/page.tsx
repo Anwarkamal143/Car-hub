@@ -8,6 +8,7 @@ type Props = {
 };
 export default async function Home(props: Props) {
   const { searchParams = {} } = props;
+  console.log({ searchParams });
   return (
     <main className="overflow-hidden">
       <Hero />
