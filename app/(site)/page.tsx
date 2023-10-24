@@ -8,7 +8,7 @@ type Props = {
   searchParams: Partial<ISearchParams>;
 };
 export default async function Page(props: Props) {
-  const { searchParams = {} } = props;
+  const { searchParams } = props;
   console.log({ searchParams });
   return (
     <main className="overflow-hidden">
@@ -31,14 +31,7 @@ export default async function Page(props: Props) {
             </Suspense>
           </div>
         </div>
-        <Cars
-          searchParams={{
-            year: 2002,
-            make: "audi",
-            model: "",
-            ...searchParams,
-          }}
-        />
+        <Cars />
       </div>
     </main>
   );

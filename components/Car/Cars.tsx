@@ -4,7 +4,7 @@ import CarCard from "../CarCard";
 import ShowMore from "../ShowMore";
 
 type Props = {
-  searchParams: Partial<ISearchParams>;
+  searchParams?: Partial<ISearchParams>;
 };
 
 async function Cars(props: Props) {
@@ -24,8 +24,8 @@ async function Cars(props: Props) {
       <Suspense fallback={<p>Loading show More button...</p>}>
         <ShowMore
           searchparams={searchParams}
-          pageNumber={parseInt(`${searchParams.limit || 10}`) / 10}
-          isNext={(searchParams.limit || 10) > data?.length}
+          pageNumber={parseInt(`${searchParams?.limit || 10}`) / 10}
+          isNext={(searchParams?.limit || 10) > data?.length}
         />
       </Suspense>
     </section>
