@@ -7,7 +7,7 @@ import { Suspense } from "react";
 type Props = {
   searchParams: Partial<ISearchParams>;
 };
-export default async function Home(props: Props) {
+export default async function Page(props: Props) {
   const { searchParams = {} } = props;
   console.log({ searchParams });
   return (
