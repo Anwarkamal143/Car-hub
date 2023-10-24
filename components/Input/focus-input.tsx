@@ -170,6 +170,7 @@ function FocusInput(props: inputProfile, ref: Ref<any>) {
         onChange: props.onChange,
       };
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [value]
   );
   switch (inputType) {
