@@ -12,7 +12,9 @@ type ICar = {
   transmission: string;
   year: number;
 };
-type ICarMedia = {};
+type ICarMedia = {
+  [key: string]: any;
+};
 type ISearchParams = {
   year: number;
   fuel_type: string;
