@@ -10,6 +10,7 @@ type Props = {
 async function Cars(props: Props) {
   const { searchParams } = props;
   const [data = [], error] = await getServerCars({
+    limit: 10,
     ...searchParams,
   } as any);
 

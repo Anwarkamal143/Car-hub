@@ -36,7 +36,6 @@ export default async function Home(props: Props) {
             year: 2002,
             make: "audi",
             model: "",
-            limit: 10,
             ...searchParams,
           }}
         />
