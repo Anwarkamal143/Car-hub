@@ -2,6 +2,7 @@ import Cars from "@/components/Car/Cars";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
 import CustomFilters from "@/components/SearchBar/CustomFilters";
+import { Suspense } from "react";
 
 type Props = {
   searchParams: Partial<ISearchParams>;
@@ -21,9 +22,13 @@ export default async function Home(props: Props) {
           <p>Explore the cars you might like</p>
         </div>
         <div className="home__filters">
-          <SearchBar />
+          <Suspense fallback={<p>Loading filters...</p>}>
+            <SearchBar />
+          </Suspense>
           <div className="home__filter-container">
-            <CustomFilters />
+            <Suspense fallback={<p>Loading custom filters...</p>}>
+              <CustomFilters />
+            </Suspense>
           </div>
         </div>
         <Cars

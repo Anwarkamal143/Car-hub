@@ -1,4 +1,5 @@
 import { getServerCars } from "@/serverapi/cars";
+import { Suspense } from "react";
 import CarCard from "../CarCard";
 import ShowMore from "../ShowMore";
 
@@ -19,10 +20,12 @@ async function Cars(props: Props) {
           <CarCard key={i} car={car} />
         ))}
       </div>
-      <ShowMore
-        pageNumber={parseInt(`${searchParams.limit || 10}`) / 10}
-        isNext={(searchParams.limit || 10) > data?.length}
-      />
+      <Suspense fallback={<p>Loading show More button...</p>}>
+        <ShowMore
+          pageNumber={parseInt(`${searchParams.limit || 10}`) / 10}
+          isNext={(searchParams.limit || 10) > data?.length}
+        />
+      </Suspense>
     </section>
   ) : (
     <div className="home__error-container">
