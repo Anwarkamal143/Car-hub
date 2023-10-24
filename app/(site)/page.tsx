@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
 import CustomFilters from "@/components/SearchBar/CustomFilters";
 import { Suspense } from "react";
-
+export const dynamic = "force-dynamic";
 type Props = {
   searchParams: Partial<ISearchParams>;
 };
