@@ -7,15 +7,7 @@ type Props = {
   searchParams: Partial<ISearchParams>;
 };
 export default async function Home(props: Props) {
-  const {
-    searchParams = {
-      year: 2022,
-      limit: 10,
-      fuel_type: "",
-      model: "",
-      make: "audi",
-    },
-  } = props;
+  const { searchParams = {} } = props;
   return (
     <main className="overflow-hidden">
       <Hero />

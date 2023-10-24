@@ -62,7 +62,6 @@ const SearchBar = () => {
       <div className="searchbar__item">
         <AutoComplete
           value={manufacturer || ""}
-          defaultValue={manufacturer || ""}
           name="make"
           onChangeItem={(item: any) => {
             setManufacturer(item);
@@ -98,7 +97,6 @@ const SearchBar = () => {
           placeholder="Tiguan"
           value={model}
           className="searchbar__input "
-          defaultValue={model || ""}
           inputClassNames="border-none bg-transparent focus:!bg-transparent"
           onChange={(e) => {
             setModel(e.target.value);

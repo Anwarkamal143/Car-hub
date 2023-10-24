@@ -28,7 +28,7 @@ async function Cars(props: Props) {
         ))}
       </div>
       <ShowMore
-        pageNumber={(Number(searchParams.limit) || 10) / 10}
+        pageNumber={(parseInt(`${searchParams.limit || 0}`) || 10) / 10}
         isNext={(searchParams.limit || 10) > data?.length}
       />
     </section>
