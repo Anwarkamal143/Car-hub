@@ -2,11 +2,7 @@ import useSWRMutation, { SWRMutationConfiguration } from "swr/mutation";
 
 import { IAxiosRequest } from "@/utils/request";
 import { Key } from "swr";
-import {
-  ApiModelDataTypes,
-  ApiModelMapping,
-  RequestOptions,
-} from "./apiModelMapping";
+import { ApiModelMapping, RequestOptions } from "./apiModelMapping";
 type IArgsType = {
   slug: string;
   options?: RequestOptions & {
@@ -34,12 +30,7 @@ export default function useGetItemM<T extends keyof typeof ApiModelMapping>({
   const newKey = typeof queryKey === "function" ? queryKey() : queryKey;
   const newRequstId = newKey;
 
-  return useSWRMutation<
-    ApiResponse<ApiModelDataTypes[T]>,
-    unknown,
-    Key,
-    IArgsType
-  >(
+  return useSWRMutation<ApiResponse<typeof model>, unknown, Key, IArgsType>(
     queryKey,
     (
       key: string,
