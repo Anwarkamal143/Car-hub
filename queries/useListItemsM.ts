@@ -40,7 +40,7 @@ export default function useListItemsM<T extends keyof typeof ApiModelMapping>({
     IArgsType
   >(
     queryKey,
-    async (
+    (
       key: string,
       options: {
         arg: IArgsType;
@@ -52,7 +52,7 @@ export default function useListItemsM<T extends keyof typeof ApiModelMapping>({
         ...(reqOptions.requestOptions || {}),
         requestId: reqOptions.requestOptions?.requestId || newRequstId,
       };
-      return await model.list(reqOptions);
+      return model.list(reqOptions);
     },
     options as any
   );

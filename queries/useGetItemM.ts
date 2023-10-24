@@ -41,7 +41,7 @@ export default function useGetItemM<T extends keyof typeof ApiModelMapping>({
     IArgsType
   >(
     queryKey,
-    async (
+    (
       key: string,
       options: {
         arg: IArgsType;
@@ -53,7 +53,7 @@ export default function useGetItemM<T extends keyof typeof ApiModelMapping>({
         ...(reqOptions.requestOptions || {}),
         requestId: reqOptions.requestOptions?.requestId || newRequstId,
       };
-      return await model.get(slug, reqOptions);
+      return model.get(slug, reqOptions);
     },
     options as any
   );
