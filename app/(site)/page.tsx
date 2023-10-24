@@ -7,9 +7,8 @@ import { Suspense } from "react";
 type Props = {
   searchParams: Partial<ISearchParams>;
 };
-export default async function Page(props: Props) {
+export default function Page(props: Props) {
   const { searchParams } = props;
-  console.log({ searchParams });
   return (
     <main className="overflow-hidden">
       <Hero />
