@@ -31,7 +31,14 @@ export default async function Page(props: Props) {
             </Suspense>
           </div>
         </div>
-        <Cars />
+        <Cars
+          searchParams={{
+            year: 2002,
+            make: "audi",
+            model: "",
+            ...searchParams,
+          }}
+        />
       </div>
     </main>
   );
