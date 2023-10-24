@@ -21,12 +21,21 @@ const Form = <T extends FieldValues>({
   onSubmit,
   children,
   ref,
+
   ...props
 }: FormProps<T>) => {
   return (
     <FormProvider {...form}>
       {/* the `form` passed here is return value of useForm() hook */}
-      <form onSubmit={form.handleSubmit(onSubmit)} {...props} ref={ref as any}>
+      <form
+        onSubmit={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          form.handleSubmit(onSubmit)(e);
+        }}
+        {...props}
+        ref={ref as any}
+      >
         <fieldset
           //   We disable form inputs when we are submitting the form!! A tiny detail
           //        that is missed a lot of times

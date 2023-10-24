@@ -7,6 +7,7 @@ import {
   ComponentPropsWithoutRef,
   HTMLAttributes,
   ReactNode,
+  cloneElement,
   forwardRef,
 } from "react";
 import { twMerge } from "tailwind-merge";
@@ -167,7 +168,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </span>
         ) : (
-          <LeftIcon {...(lefttIcon?.props || {})} />
+          cloneElement(LeftIcon, { ...(lefttIcon?.props || {}) })
         );
     }
     let RightIcon: any = rightIcon?.Icon;
@@ -185,14 +186,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <Image
               src={RightIcon}
               alt="RightIcon"
-              // width={50}
-              // height={50}
               fill
               className="object-contain"
             />
           </span>
         ) : (
-          <RightIcon {...(rightIcon?.props || {})} />
+          cloneElement(RightIcon, { ...(rightIcon?.props || {}) })
         );
     }
     return (

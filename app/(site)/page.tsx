@@ -1,46 +1,47 @@
-import Filters from "@/components/Filters";
+import Cars from "@/components/Car/Cars";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
-import CarCard from "@/components/UI/CarCard";
-import { getServerCars } from "@/serverapi/cars";
+import CustomFilters from "@/components/SearchBar/CustomFilters";
 
-export default async function Home() {
-  // query: {
-  //   model: "corolla",
-  // },
-  const [data = [], error] = await getServerCars("corolla");
-
-  const Component = !!data.length ? (
-    <section>
-      We have cars!
-      <div className="home__cars-wrapper">
-        {data.map((car: ICar, i: number) => (
-          <CarCard key={i} car={car} />
-        ))}
-      </div>
-    </section>
-  ) : (
-    <div className="home__error-container">
-      <h2 className="text-black text-xl font-bold">OOps, no results!</h2>
-      <p>{error?.message}</p>
-    </div>
-  );
+type Props = {
+  searchParams: Partial<ISearchParams>;
+};
+export default async function Home(props: Props) {
+  const {
+    searchParams = {
+      year: 2022,
+      limit: 10,
+      fuel_type: "",
+      model: "",
+      make: "audi",
+    },
+  } = props;
   return (
     <main className="overflow-hidden">
       <Hero />
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
-          <h1 className="text-4xl font-extrabold"> Car Catalogue</h1>
+          <h1 className="text-4xl font-extrabold" id="car_cataglog_section">
+            {" "}
+            Car Catalogue
+          </h1>
           <p>Explore the cars you might like</p>
         </div>
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            <Filters title="fuel" />
-            <Filters title="year" />
+            <CustomFilters />
           </div>
         </div>
-        {Component}
+        <Cars
+          searchParams={{
+            year: 2002,
+            make: "audi",
+            model: "",
+            limit: 10,
+            ...searchParams,
+          }}
+        />
       </div>
     </main>
   );

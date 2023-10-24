@@ -45,7 +45,6 @@ const TwInput = forwardRef<HTMLInputElement, IInputProps>(
     {
       label,
       name,
-      value,
       onChange: pOnChange,
       type = "text",
 
@@ -63,6 +62,7 @@ const TwInput = forwardRef<HTMLInputElement, IInputProps>(
       validations = [],
       limit,
       min,
+      ...rest
     },
     ref
   ) => {
@@ -140,7 +140,6 @@ const TwInput = forwardRef<HTMLInputElement, IInputProps>(
         <input
           id={name}
           name={name}
-          value={value}
           onChange={onChange}
           type={type}
           placeholder={placeholder}
@@ -150,6 +149,7 @@ const TwInput = forwardRef<HTMLInputElement, IInputProps>(
           } ${inputClassNames} ${inputLeftIconClasses} ${inputRightIconClasses}`}
           disabled={disabled}
           ref={ref}
+          {...rest}
         />
         {leftIcon ? (
           <div

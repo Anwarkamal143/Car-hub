@@ -1,10 +1,11 @@
 "use client";
 
-import { calculateCarRent } from "@/utils";
+import { calculateCarRent, getCarsImagesURL } from "@/utils";
 import Image from "next/image";
 import { useState } from "react";
-import { Button } from "../Button";
-import DialogModel from "../Modals";
+import { Button } from "./Button";
+import CarDetailModel from "./CarDetailModel";
+import DialogModel from "./Modals";
 
 type Props = {
   car: ICar;
@@ -14,6 +15,7 @@ const CarCard = (props: Props) => {
   const { year, city_mpg, make, model, transmission, drive } = props?.car || {};
   const carRent = calculateCarRent(city_mpg, year);
   const [open, setIsOpen] = useState(false);
+
   return (
     <div className="car-card group">
       <div className="car-card__content">
@@ -28,7 +30,7 @@ const CarCard = (props: Props) => {
       </p>
       <div className="w-full relative h-40 my-3 object-contain">
         <Image
-          src={"/hero.png"}
+          src={getCarsImagesURL(props.car) || "/hero.png"}
           alt="car model"
           fill
           priority
@@ -70,10 +72,13 @@ const CarCard = (props: Props) => {
         </div>
       </div>
       <DialogModel
+        allowFotter={false}
+        contentClassNames="sm:max-w-lg"
         isOpen={open}
-        content={""}
+        closeIconClassNames="bg-white rounded-full"
+        content={<CarDetailModel car={props.car} />}
         toggleOpen={setIsOpen as any}
-        title="Car Details"
+        // title="Car Details"
       />
     </div>
   );

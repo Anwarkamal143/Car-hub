@@ -1,6 +1,7 @@
 "use client";
 
 import useThrottle from "@/hooks/useThrottle";
+import { Capitalize } from "@/utils";
 import {
   Combobox,
   ComboboxButtonProps,
@@ -19,7 +20,10 @@ type IAutocompleteItem = {
 type Props = {
   onChange: (text: string) => void | Promise<unknown>;
   onChangeItem?: (text: string | IAutocompleteItem) => void | Promise<unknown>;
-  value?: IAutocompleteItem;
+  name?: string;
+  value?: IAutocompleteItem | string;
+  defaultValue?: IAutocompleteItem | string;
+
   options?: IAutocompleteItem[] | string[];
   inputProps?: ComboboxInputProps<any, any>;
   buttonProps?: ComboboxButtonProps<any>;
@@ -30,15 +34,19 @@ type Props = {
 const AutoComplete = (props: Props) => {
   const {
     onChange,
-    value,
+    value: vValue,
     options: opts,
     onChangeItem,
     inputProps = {},
     buttonProps = {},
     optionProps = {},
     optionsProps = {},
+    name,
+    defaultValue,
   } = props;
-  const [query, setQueryValue] = useState(value?.label || "");
+  const value = typeof vValue === "string" ? vValue : vValue?.label;
+  // const defaultValue = typeof dValue === "string" ? dValue : dValue?.label;
+  const [query, setQueryValue] = useState(value || "");
   const [options, setOptions] = useState(opts || []);
   const [loading, setIsLoading] = useState(false);
   const setQuery = useThrottle({
@@ -54,9 +62,15 @@ const AutoComplete = (props: Props) => {
     console.log({ value });
     onChangeItem?.(value);
   };
+  console.log({ vValue, defaultValue });
   return (
     <div className="search-manufacturer">
-      <Combobox value={value?.label || value} onChange={onItemChange}>
+      <Combobox
+        value={vValue}
+        defaultValue={defaultValue}
+        onChange={onItemChange as any}
+        name={name}
+      >
         <div className="relative w-full">
           <Combobox.Button className={"absolute top-[14px]"} {...buttonProps}>
             <Image
@@ -71,7 +85,13 @@ const AutoComplete = (props: Props) => {
             className={"search-manufacturer__input"}
             placeholder="Volkswagen"
             displayValue={(item: IAutocompleteItem) => {
-              return item.label;
+              if (typeof item === "object") {
+                return item.label;
+              }
+              if (typeof item === "string") {
+                return Capitalize(item) || "";
+              }
+              return item;
             }}
             onChange={(e) => {
               console.log({ e: e.target });

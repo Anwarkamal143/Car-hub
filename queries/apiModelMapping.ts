@@ -1,7 +1,9 @@
+import CarImagesModel from "@/models/CarImagesModel";
 import CarModel from "@/models/CarModel";
 
 export const ApiModels = {
   Cars: "cars",
+  Car: "car",
 } as const;
 export const ThreePAppSubModels = {
   ThreePAppConnection: "3p-app-connections",
@@ -9,6 +11,9 @@ export const ThreePAppSubModels = {
 export const ApiModelMapping = {
   [ApiModels.Cars]: {
     model: CarModel,
+  },
+  [ApiModels.Car]: {
+    model: CarImagesModel,
   },
 } as const;
 export const ThreePAppSubModelMapping = {
@@ -18,6 +23,7 @@ export const ThreePAppSubModelMapping = {
 };
 export type ApiModelDataTypes = {
   [ApiModels.Cars]: ICar;
+  [ApiModels.Car]: ICarMedia;
 };
 export type RequestOptions = {
   query?: Record<string, any>;
